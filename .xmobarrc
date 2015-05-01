@@ -1,0 +1,47 @@
+Config { font = "-*-gohufont-medium-r-*-*-14-*-*-*-*-*-*-*"
+       , bgColor = "#121216"
+       , fgColor = "#CCCCEE"
+       , position = Top
+       , lowerOnStart = True
+       , commands = 
+        [ Run Weather "EHRD" ["-t"
+                             ,"<fc=#D55362><station>:</fc> <tempC>C"
+                             ,"-L"
+                             ,"18"
+                             ,"-H"
+                             ,"25"
+                             ,"--normal"
+                             ,"#0F9FCC"
+                             ,"--high"
+                             ,"#D55362"
+                             ,"--low"
+                             ,"#48658C"] 36000
+        , Run Uptime ["-t"
+                     ,"<fc=#D55362>Up:</fc> <days>s <hours>h <minutes>m"] 60
+        , Run BatteryP ["BAT0"] 
+                       ["-l"
+                       ,"#D55362"
+                       ,"-t"
+                       ,"<fc=#D55362>Batt:</fc> <left>% / <timeleft>"] 60
+        , Run Cpu ["-t"
+                  ,"<fc=#D55362>Cpu:</fc> <total>%"
+                  ,"-L"
+                  ,"3"
+                  ,"-H"
+                  ,"50"
+                  ,"--normal"
+                  ,"#35C3A9"
+                  ,"--high"
+                  ,"#D55362"] 100
+        , Run Memory ["-t"
+                     ,"<fc=#D55362>Mem:</fc> <usedratio>%"] 100
+        , Run Swap ["-t","<fc=#D55362>Swap:</fc> <usedratio>%"] 100
+        , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+        --, Run MPD ["-t"
+        --          ,"<fc=#D55362>Now Playing: </fc><title> - <artist> (<lapsed>/<length>)"
+        --          ] 1
+        ]
+       , sepChar  = "%"
+       , alignSep = "}{"
+       , template = " %cpu% | %memory% * %swap% | %uptime% }{ MPD doesnt work, look in .xmobarrc | %EHRD% | <fc=#D55362>%date%</fc> "
+       }
